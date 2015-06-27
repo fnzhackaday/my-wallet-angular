@@ -1,0 +1,1 @@
+var myWallet = angular.module('MyWallet', ['ngResource']);
