@@ -1,4 +1,4 @@
-myWallet.controller('MyWalletController', ['$http', 'angularPayments', function($http, angularPayments){
+myWallet.controller('MyWalletController', ['$http', function($http){
   var self = this;
 
   self.stripeCallback = function (code, result) {
