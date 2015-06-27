@@ -3,10 +3,26 @@
 	<head>
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">		<script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2"></script>
+    <script type="text/javascript" 
+        src="bower_components/angular-payments/lib/angular-payments.js">
+    </script>
     <script src="js/app.js"></script>
     <title>My Wallet</title>
 	</head>
-
-	<body>
-	</body>
-	</html>
+  <body>
+    <h1>Wallet!</h1>
+    <form>
+      How much to transfer:
+      <input type="text" name="amount">
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <form stripe-form="stripeCallback">
+      <input ng-model="number" placeholder="Card Number" payments-format="card" />
+      <input ng-model="expiry" placeholder="Expiration" payments-format="expiry"/>
+      <input ng-model="cvc" placeholder="CVC" payments-format="cvc" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
