@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en" ng-app="MyWallet">
 	<head>
-		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">		<script src="node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-resource/angular-resource.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2"></script>
     <script type="text/javascript" 
@@ -19,16 +20,22 @@
       <input type="submit" value="Submit">
     </form>
     <br>
-    <form stripe-form="ctrl.stripeCallback" name="checkoutForm">>
-	    <input ng-model="number" placeholder="Card Number" 
-   payments-validate="card" />
-		<input ng-model="expiry" placeholder="Expiration"
-   payments-validate="expiry" />
-		<input ng-model="cvc" placeholder="CVC"
-   payments-validate="cvc" />
-	    <button type="submit">Submit</button>
-		</form>  
+    <form stripe-form="stripeCallback as ctrl" name="checkoutForm">>
+        <input ng-model="number" placeholder="Card Number" 
+                payments-validate="card" name="card" />
+        <input ng-model="expiry" placeholder="Expiration" 
+                 payments-validate="expiry"                
+                 name="expiry" />
+        <input ng-model="cvc" placeholder="CVC" payments-validate="cvc" name="cvc" />
+        <button type="submit">Submit</button>
+    </form>
 
+    <div ng-if="checkoutForm.expiry.$invalid">
+      Error: invalid expiration date!
+    </div>
+    <div ng-if="checkoutForm.cvc.$invalid">
+      Error: invalid CVC!
+    </div>
 		<div ng-if="checkoutForm.card.$invalid">
 		    Error: invalid card number!
 		</div>
